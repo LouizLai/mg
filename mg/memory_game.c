@@ -20,9 +20,13 @@ int main(void)
 {
 	Init();
 	stdout=&LCDstr;
+	for(int i=0; i<16;i++)
+	{
+		printf("%c",box);
+	}
+	LCD_gotoXY(0,0);
 	while(1)
 	{
-		
 		TI_Update();
 		if(TI_IsF100ms())
 		{
@@ -31,12 +35,21 @@ int main(void)
 			LCD_Update(Input_GetKey());
 		}
 		
-		if(TI_IsF1s())
+		if(TI_IsF2s())
 		{
-			TI_ClrF1s();
+			TI_ClrF2s();
 			//printf("%i",a);
+			if(numChar>=2)
+			{
+				logic_update();
+				numChar=0;
+			}
+			
 		}
-		
+		if(logic_won())
+		{
+			printf("%s","you won!");
+		}
 	}
 }
 

@@ -27,7 +27,7 @@ char Input_GetKey();
 void input_ReadKBD();
 char Input_GetKey();
 //logic
-char logic_getAlpha(int col, int row);
+char logic_getAlpha(int col);
 void logic_update();
 int logic_won();
 void logic_restart();

@@ -14,10 +14,10 @@ void Input_ReadKBD()
 	static char oldD;
 	char newD=(PIND>>2) & 0x0F;
 	char pressed = (newD ^ oldD) & oldD;
-	if (pressed & 0x01) lastkey=Left;
-	if (pressed & 0x02) lastkey=UpDown;
-	if (pressed & 0x04) lastkey=Right;
-	if (pressed & 0x08) lastkey=Enter;
+	if (pressed & 0x01) lastkey=UpDown;
+	if (pressed & 0x02) lastkey=Left;
+	if (pressed & 0x04) lastkey=Enter;
+	if (pressed & 0x08) lastkey=Right;
 	oldD=newD;
 }
 

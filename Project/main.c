@@ -37,6 +37,7 @@ int main()
 	LCD_Init();
 	input_Init();
 	main_Init();
+	//char a = 1;
 	//LCD_writeString("Hello World?");
 	
 	//fprintf( &LCDstr, "%d, %x, %s", 10, 10, "");
@@ -46,7 +47,7 @@ int main()
 	//for (int i = 0; i<32; i++){
 	//	printf("%c", 219);
 	//}
-	logic_update();
+	//logic_update();
 	while(1)
 	{
 		UpdateVolatileVariables();
@@ -54,7 +55,6 @@ int main()
 		if(IsF10ms())
 		{
 			ClrF10ms();
-
 		}
 		if(IsF1ms())
 		{
@@ -65,9 +65,10 @@ int main()
 			ClrF100ms();
 		}
 		if(IsF1s()){
-			ClrF100ms();
+			ClrF1s();
 			logic_update();
 		}
+		/*
 		if(logic_won())
 		{
 			LCD_gotoXY(0,0);
@@ -76,6 +77,7 @@ int main()
 			logic_restart();
 			logic_update();
 		}
+		*/
 	}
 }
 
@@ -90,6 +92,9 @@ void main_Init()
 	TCCR0B=4;
 	OCR0A=71;
 	TIMSK0=(1<<OCIE0A);
+	
+	//enable global interrupt
+	sei();
 }
 
 ISR(TIMER0_COMPA_vect)

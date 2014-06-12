@@ -24,7 +24,7 @@ void TI_Update()
 
 ISR(TIMER0_COMPA_vect)
 {
-	static int cnt10, cnt100, cnt1000;
+	static int cnt10, cnt100, cnt2000;
 	v_systick++;
 	SetF1ms();
 	if (cnt10 >= 10)
@@ -39,12 +39,12 @@ ISR(TIMER0_COMPA_vect)
 		SetF100ms();
 	}
 	cnt100++;
-	if (cnt1000 >= 1000)
+	if (cnt2000 >= 2000)
 	{
-		cnt1000 = 0;
-		SetF1s();
+		cnt2000 = 0;
+		SetF2s();
 	}
-	cnt1000++;
+	cnt2000++;
 }
 
 void TI_init()

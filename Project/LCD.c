@@ -197,15 +197,14 @@ void LCD_writeString(char *txt){
 void LCD_moveXY(enum LCD_DirXY dir){
 			switch (dir)
 			{
-				case Left: LCD_gotoXY(abs((--colNow)%16), rowNow);break;
-				case Right: LCD_gotoXY(abs((++colNow)%16), rowNow); break;
-				case UpDown: LCD_gotoXY(colNow, rowNow==0?1:0); break;
+				case Left: LCD_gotoXY(abs((--colNow)%16), 1);break;
+				case Right: LCD_gotoXY(abs((++colNow)%16), 1); break;
 				default: break;
 			}
 }
 
 void LCD_showChar(){
-	LCD_Write_Remain(logic_getAlpha(colNow, rowNow));
+	LCD_Write_Remain(logic_getAlpha(colNow));
 	//_delay_ms(100);
 	//LCD_Write_Remain(box);
 }

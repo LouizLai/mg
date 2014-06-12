@@ -4,46 +4,46 @@
  * Created: 23/05/2014 08:53:11
  *  Author: laicc_000
  */ 
+#include <util/atomic.h>
 #include "LCD.h"
 #include "global.h"
-char display[2][16] = {{box,box,box,box,box,box,box,box,box,box,box,box,box,box,box,box},{box,box,box,box,box,box,box,box,box,box,box,box,box,box,box,box}};
-char original[2][16] ={{box,box,box,box,box,box,box,box,box,box,box,box,box,box,box,box},{box,box,box,box,box,box,box,box,box,box,box,box,box,box,box,box}};
-char alpha[2][16] =   {{'a','c','e','m','n','p','q','r','s','u','v','w','x','y','z','g'},{'a','c','e','m','n','p','q','r','s','u','v','w','x','y','z','g'}};
+char display[16] = {box,box,box,box,box,box,box,box,box,box,box,box,box,box,box,box};
+char original[16] ={box,box,box,box,box,box,box,box,box,box,box,box,box,box,box,box};
+char alpha[16] =   {'a','c','e','m','n','p','q','r','s','u','v','w','x','y','z','g'};
 
 int tempRow;
 int tempCol;
+char temp_Col;
 int first=1;
 
-char logic_getAlpha(int col, int row)
+char logic_getAlpha(int col)
 {
 	if(first){
-		tempRow = row;
 		tempCol = col;
 		first=0;
 	}else{
-		if((alpha[tempRow][tempCol]==alpha[row][col])&&!((tempRow==row)&&(tempCol==col))){
+		if((alpha[tempCol]==alpha[col])&&!(tempCol==col)){
 			//display[tempRow][tempCol]=alpha[tempRow][tempCol];
 			//display[row][col]=alpha[row][col];
 		}
 		first=1;
 	}
 	
-	return alpha[row][col];
+	return alpha[col];
 }
 
 void logic_update()
 {
-	LCD_gotoXY(0,0);
-	for (int j=0; j<2;j++)
-	{
-		for (int i=0; i<16; i++)
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){
+	temp_Col=colNow;
+	LCD_gotoXY(0,1);
+		for (int i=0; i<15; i++)
 		{
-			printf("%c", display[j][i]);
+			//printf("%c", display[i]);
+			//printf("%s", "s");
 		}
+	LCD_gotoXY(temp_Col, 1);
 	}
-	LCD_gotoXY(colNow, rowNow);
-
-	
 }
 
 int logic_won()
@@ -53,11 +53,8 @@ int logic_won()
 
 void logic_restart()
 {
-	for (int j=0; j<2;j++)
-	{
 		for (int i=0; i<16; i++)
 		{
-			display[j][i]=box;
+			display[i]=box;
 		}
-	}
 }

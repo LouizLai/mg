@@ -105,6 +105,9 @@
     <Compile Include="LCD.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="logic.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="memory_game.c">
       <SubType>compile</SubType>
     </Compile>

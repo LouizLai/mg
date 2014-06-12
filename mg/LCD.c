@@ -31,7 +31,7 @@ int LCD_putch(char c, FILE *stream)
 		LCD_gotoXY(0,~rowNow);
 	}
 	//display word by word
-	_delay_ms(100);
+	//_delay_ms(100);
 	return 0;
 }
 
@@ -200,7 +200,7 @@ void LCD_Update(enum Button dir){
 	{
 		case Left: LCD_gotoXY(abs((--colNow)%16), rowNow);break;
 		case Right: LCD_gotoXY(abs((++colNow)%16), rowNow); break;
-		case UpDown: LCD_gotoXY(colNow, rowNow==0?1:0); break;
-		case Enter: break;
+		//case UpDown: LCD_gotoXY(colNow, rowNow==0?1:0); break;
+		case Enter: LCD_ShowChar();break;
 		default: break;
-	}}
+	}}void LCD_ShowChar(){	if(numChar<2)	{		char temp = colNow;		LCD_Write(Data,logic_getAlpha(colNow));		LCD_gotoXY(temp, 0);		numChar++;	}}

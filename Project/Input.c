@@ -26,10 +26,10 @@ void input_enable()
 		{
 			switch (cmd)
 			{
-				case 1: LCD_moveXY(Left);break;
-				case 2: LCD_moveXY(Right); break;
-				case 3: LCD_moveXY(UpDown);break;
-				case 4: LCD_showChar();break;
+				//case 1: ;break;
+				case 2: LCD_moveXY(Left); break;
+				case 3: LCD_showChar();break;
+				case 4: LCD_moveXY(Right);break;
 				default: break;
 			}
 		}

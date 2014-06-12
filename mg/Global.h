@@ -14,6 +14,8 @@ enum Button {no=9, Left=0, Right=1, UpDown=2, Enter=3};
 enum charCode {box=219};
 
 char colNow, rowNow;
+char numChar;
+
 
 int abs(int a);
 
@@ -26,13 +28,13 @@ void Input_ReadKBD();
 enum Button Input_GetKey();
 void Input_Init();
 
-/*
+
 //logic
-char logic_getAlpha(int col, int row);
+char logic_getAlpha(int col);
 void logic_update();
 int logic_won();
 void logic_restart();
-*/
+
 
 //LCD
 void LCD_Update(enum Button dir);

@@ -70,5 +70,5 @@ void LCD_writeString(char *txt);
 int LCD_putch(char c, FILE *stream);
 
 void LCD_Update(enum Button dir);
-
+void LCD_ShowChar();
 #endif /* LCD_H_ */
