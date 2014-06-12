@@ -5,18 +5,13 @@
  * Created: 01/06/2014 13:53:32
  *  Author: laicc_000
  */ 
+
 #include <util/atomic.h>
 #include <avr/interrupt.h>
 
 
 #include "Global.h"
 #include "TI.h"
-
-//definition
-volatile long v_systick;
-long systick;
-volatile char v_timeStatus;
-char timeStatus;
 
 void TI_Update()
 {
@@ -62,6 +57,9 @@ void TI_init()
 	TCCR0B=4;
 	OCR0A=71;
 	TIMSK0=(1<<OCIE0A);
+	
+	//enable global interrupt
+	sei();
 }
 
 

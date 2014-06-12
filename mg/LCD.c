@@ -195,11 +195,12 @@ void LCD_writeString(char *txt){
 	}
 }
 
-void LCD_moveXY(enum LCD_DirXY dir){
+void LCD_Update(enum Button dir){
 	switch (dir)
 	{
 		case Left: LCD_gotoXY(abs((--colNow)%16), rowNow);break;
 		case Right: LCD_gotoXY(abs((++colNow)%16), rowNow); break;
 		case UpDown: LCD_gotoXY(colNow, rowNow==0?1:0); break;
+		case Enter: break;
 		default: break;
-	}}
+	}}

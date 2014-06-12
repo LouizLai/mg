@@ -7,12 +7,14 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/atomic.h>
 
-#include "TI.h"
 #include "LCD.h"
 #include "Global.h"
+#include "TI.h"
 
 char a = 1;
+
 
 int main(void)
 {
@@ -20,21 +22,27 @@ int main(void)
 	stdout=&LCDstr;
 	while(1)
 	{
+		
 		TI_Update();
-		printf("%i",TI_IsF10ms());
-		if(TI_IsF10ms())
+		if(TI_IsF100ms())
 		{
-			TI_ClrF10ms();
-			PORTB = a;
+			TI_ClrF100ms();
+			Input_ReadKBD();
+			LCD_Update(Input_GetKey());
+		}
+		
+		if(TI_IsF1s())
+		{
+			TI_ClrF1s();
+			//printf("%i",a);
 		}
 		
 	}
 }
 
-
-
 void Init()
 {
-	TI_init();
 	LCD_Init();
+	Input_Init();
+	TI_init();
 }

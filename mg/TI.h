@@ -9,11 +9,10 @@
 #ifndef TI_H_
 #define TI_H_
 
-//its a declaration
-extern volatile long v_systick;
-extern long systick;
-extern volatile char v_timeStatus;
-extern char timeStatus;
+volatile long v_systick;
+long systick;
+volatile char v_timeStatus;
+char timeStatus;
 
 #define F1ms 0x01
 #define F10ms 0x02
@@ -40,3 +39,4 @@ void TI_init();
 void TI_Update();
 
 #endif /* TI_H_ */
+

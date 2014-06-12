@@ -9,34 +9,26 @@
 #ifndef GLOBAL_H_
 #define GLOBAL_H_
 
-//enums
-enum Button {no=9, Left=0, Right=1, UpDown=2, Enter=3};
 enum charCode {box=219};
-
-char colNow, rowNow;
-
+static char colNow = 0, rowNow = 0;
 int abs(int a);
 
 //main
-void Init();
-void TI_Update();
+void main_Init();
+void UpdateVolatileVariables();
 
 //input
+void input_Init();
+void input_enable();
 void Input_ReadKBD();
-enum Button Input_GetKey();
-void Input_Init();
+char Input_GetKey();
 
-/*
+
+void input_ReadKBD();
+char Input_GetKey();
 //logic
 char logic_getAlpha(int col, int row);
 void logic_update();
 int logic_won();
 void logic_restart();
-*/
-
-//LCD
-void LCD_Update(enum Button dir);
-
-
-
 #endif /* GLOBAL_H_ */

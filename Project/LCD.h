@@ -13,7 +13,7 @@
 #define F_CPU 18432000UL	// dolocitev frekvence oscilatorja za funkcije iz delay.h - mora biti pred #include <util/delay.h>
 #include <util/delay.h>		//knjiznica s funkcijami delay
 #include <stdio.h>
-#include "Global.h"
+
 //Definicije prikljucitve LCD - spreminja uporabnik
 
 #define LCD_DataPort	PORTA
@@ -59,16 +59,22 @@
 //definicija enum podatkovnega tipa LCD_register
 enum LCD_Register {Data=0,Instr=1};
 
+//distinguish the direction of moving cursor
+enum LCD_DirXY {Left=0, Right=1, UpDown=2};
+
+
 extern FILE LCDstr;
-//enum Button {no=0, Left=5, Right=2, UpDown=3, Enter=4};
+
 char LCD_Busy();
 void LCD_BusyWait(unsigned int timeout);
 void LCD_Write(enum LCD_Register reg, char data);
 void LCD_Init();
+
 void LCD_gotoXY(char col, char line);
 void LCD_writeString(char *txt);
 int LCD_putch(char c, FILE *stream);
 
-void LCD_Update(enum Button dir);
-
+void LCD_moveXY(enum LCD_DirXY dir);
+void LCD_showChar();
+void LCD_Write_Remain(char a);
 #endif /* LCD_H_ */
